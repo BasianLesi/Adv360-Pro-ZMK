@@ -1,0 +1,40 @@
+feat: enable mouse support and restore original layout
+
+Upgrade to adv360-z3.5-2 fork with mouse emulation support while
+maintaining original keyboard layout preferences.
+
+Major Changes:
+- Upgrade ZMK fork from adv360-z3.5 to adv360-z3.5-2
+- Enable CONFIG_ZMK_POINTING=y on both keyboard halves
+- Add mouse layer (Layer 4 - "Red") with full pointer control
+- Enable ZMK Studio support with CONFIG_ZMK_BEHAVIOR_LOCAL_ID_TYPE_CRC16
+
+Mouse Layer Features:
+- Mouse movement: I/J/K/L keys (up/left/down/right)
+- Left click: U key
+- Right click: O key, Space key
+- Scroll: R (up), F (down)
+- Access: Hold left home row thumb key (&mo 4)
+
+Layout Restoration:
+- ESC key restored to top-left position
+- LCTRL on home row left (instead of ESC)
+- Arrow keys on Fn layer (home row right)
+- Cut/Copy/Paste macros on Fn layer (X/C/V row)
+
+Configuration Updates:
+- config/west.yml: Update to adv360-z3.5-2 revision
+- config/adv360.keymap: Add mouse bindings, restore original layout
+- config/macros.dtsi: Add macro_cut, macro_copy, macro_past
+- config/boards/arm/adv360/*_defconfig: Enable pointing support
+- docs/FLASHING.md: Add mouse usage instructions
+- docs/UPDATE_NOTES.md: Document all changes
+
+Technical Details:
+- Mouse behaviors: &mkp (button press), &mmv (movement), &msc (scroll)
+- Uses <dt-bindings/zmk/pointing.h> for mouse support
+- ZMK Studio support via &studio_unlock and &stp behaviors
+- Bluetooth users must re-pair after flashing due to HID descriptor changes
+
+Tested: Build successful, firmware files generated with timestamp 202510281713
+

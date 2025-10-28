@@ -15,7 +15,11 @@
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/stp.h>
-#include <dt-bindings/zmk/backlight.h>
+
+// Mouse speed configuration (adjust these values to your preference)
+#define ZMK_MOUSE_DEFAULT_MOVE_VAL 2500  // Speed for cursor movement (default: 600)
+#define ZMK_MOUSE_DEFAULT_SCRL_VAL 200    // Speed for scrolling (default: 10)
+
 #include <dt-bindings/zmk/pointing.h>
 
 / {
@@ -40,31 +44,31 @@
     default_layer {
       display-name = "Base";
       bindings = <
-        &kp EQUAL &kp N1    &kp N2   &kp N3   &kp N4     &kp N5 &tog 1                                                           &mo 3 &kp N6 &kp N7 &kp N8    &kp N9   &kp N0   &kp MINUS
-        &kp TAB   &kp Q     &kp W    &kp E    &kp R      &kp T  &none                                                            &none &kp Y  &kp U  &kp I     &kp O    &kp P    &kp BSLH
-        &kp ESC   &kp A     &kp S    &kp D    &kp F      &kp G  &none           &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL           &none &kp H  &kp J  &kp K     &kp L    &kp SEMI &kp SQT
-        &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &kp HOME &kp PG_UP                           &kp N  &kp M  &kp COMMA &kp DOT  &kp FSLH &kp RSHFT
-        &mo 2     &kp GRAVE &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp SPACE              &kp UP &kp DOWN  &kp LBKT &kp RBKT &mo 2
+        &kp ESC    &kp N1     &kp N2     &kp N3    &kp N4     &kp N5  &tog 1                                                            &mo 3          &kp N6  &kp N7  &kp N8     &kp N9    &kp N0    &kp MINUS
+        &kp TAB    &kp Q      &kp W      &kp E     &kp R      &kp T   &none                                                             &none          &kp Y   &kp U   &kp I      &kp O     &kp P     &kp BSLH
+        &kp LCTRL  &kp A      &kp S      &kp D     &kp F      &kp G   &mo 4     &kp LEFT_ALT   &kp DELETE      &kp LGUI      &kp EQUAL  &kp RIGHT_WIN  &kp H   &kp J   &kp K      &kp L     &kp SEMI  &kp SQT
+        &kp LSHFT  &kp Z      &kp X      &kp C     &kp V      &kp B                            &kp HOME        &kp CAPSLOCK                            &kp N   &kp M   &kp COMMA  &kp DOT   &kp FSLH  &kp RSHFT
+        &mo 2      &kp GRAVE  &kp LCTRL  &kp LEFT  &kp RIGHT          &kp BSPC  &kp RIGHT_GUI  &kp END         &kp PG_DN     &kp ENTER  &kp SPACE              &kp UP  &kp DOWN   &kp LBKT  &kp RBKT  &mo 2
       >;
     };
     keypad {
       display-name = "Kp";
       bindings = <
-        &kp EQUAL &kp N1    &kp N2   &kp N3   &kp N4     &kp N5 &trans                                                           &mo 3 &kp N6 &kp KP_NUM &kp KP_EQUAL &kp KP_DIVIDE &kp KP_MULTIPLY &kp MINUS
-        &kp TAB   &kp Q     &kp W    &kp E    &kp R      &kp T  &none                                                            &none &kp Y  &kp KP_N7  &kp KP_N8    &kp KP_N9     &kp KP_MINUS    &kp BSLH
-        &kp ESC   &kp A     &kp S    &kp D    &kp F      &kp G  &none           &kp LCTRL &kp LALT &kp LGUI  &kp RCTRL           &none &kp H  &kp KP_N4  &kp KP_N5    &kp KP_N6     &kp KP_PLUS     &kp SQT
-        &kp LSHFT &kp Z     &kp X    &kp C    &kp V      &kp B                            &kp HOME &kp PG_UP                           &kp N  &kp KP_N1  &kp KP_N2    &kp KP_N3     &kp KP_ENTER    &kp RSHFT
-        &mo 2     &kp GRAVE &kp CAPS &kp LEFT &kp RIGHT                &kp BSPC &kp DEL   &kp END  &kp PG_DN &kp ENTER &kp KP_N0              &kp UP     &kp DOWN     &kp KP_DOT    &kp RBKT        &mo 2
+        &kp EQUAL  &kp N1     &kp N2    &kp N3    &kp N4     &kp N5  &trans                                                   &mo 3      &kp N6  &kp KP_NUM  &kp KP_EQUAL  &kp KP_DIVIDE  &kp KP_MULTIPLY  &kp MINUS
+        &kp TAB    &kp Q      &kp W     &kp E     &kp R      &kp T   &none                                                    &none      &kp Y   &kp KP_N7   &kp KP_N8     &kp KP_N9      &kp KP_MINUS     &kp BSLH
+        &kp ESC    &kp A      &kp S     &kp D     &kp F      &kp G   &none     &kp LCTRL  &kp LALT      &kp LGUI   &kp RCTRL  &none      &kp H   &kp KP_N4   &kp KP_N5     &kp KP_N6      &kp KP_PLUS      &kp SQT
+        &kp LSHFT  &kp Z      &kp X     &kp C     &kp V      &kp B                        &kp HOME      &kp PG_UP                        &kp N   &kp KP_N1   &kp KP_N2     &kp KP_N3      &kp KP_ENTER     &kp RSHFT
+        &mo 2      &kp GRAVE  &kp CAPS  &kp LEFT  &kp RIGHT          &kp BSPC  &kp DEL    &kp END       &kp PG_DN  &kp ENTER  &kp KP_N0          &kp UP      &kp DOWN      &kp KP_DOT     &kp RBKT         &mo 2
       >;
     };
     fn {
       display-name = "Fn";
       bindings = <
-        &kp F1 &kp F2 &kp F3 &kp F4 &kp F5 &kp F6 &tog 1                                           &mo 3 &kp F7 &kp F8 &kp F9 &kp F10 &kp F11 &kp F12
-        &trans &trans &trans &trans &trans &trans  &none                                           &none &trans &trans &trans &trans  &trans  &trans
-        &trans &trans &trans &trans &trans &trans  &none        &trans &trans &trans &trans        &none &trans &trans &trans &trans  &trans  &trans
-        &trans &trans &trans &trans &trans &trans                      &trans &trans                     &trans &trans &trans &trans  &trans  &trans
-        &trans &trans &trans &trans &trans               &trans &trans &trans &trans &trans &trans              &trans &trans &trans  &trans  &trans
+        &kp F1  &kp F2  &kp F3      &kp F4       &kp F5       &kp F6  &tog 1                                      &mo 3   &kp F7    &kp F8          &kp F9  &kp F10    &kp F11   &kp F12
+        &trans  &trans  &trans      &trans       &trans       &trans  &none                                       &none   &trans    &trans          &trans  &trans     &kp LBKT  &kp RBKT
+        &trans  &trans  &trans      &trans       &trans       &trans  &none   &trans  &trans      &trans  &trans  &none   &kp LEFT  &kp DOWN_ARROW  &kp UP  &kp RIGHT  &trans    &trans
+        &trans  &trans  &macro_cut  &macro_copy  &macro_past  &trans                  &trans      &trans                  &trans    &trans          &trans  &trans     &trans    &trans
+        &trans  &trans  &trans      &trans       &trans               &trans  &trans  &trans      &trans  &trans  &trans            &trans          &trans  &trans     &trans    &trans
       >;
     };
     mod {
@@ -78,8 +82,14 @@
       >;
     };
     extra1 { 
-      display-name = "Red";    
-      status = "reserved";
+      display-name = "Red";
+      bindings = <
+        &trans &trans &trans &trans &trans          &trans &trans                                           &trans &trans &trans         &trans         &trans          &trans &trans
+        &trans &trans &trans &trans &msc SCRL_DOWN    &msc SCRL_DOWN &trans                                           &trans &trans &mkp LCLK      &trans   &mkp RCLK       &trans &trans
+        &trans &trans &trans &trans &mkp RCLK  &msc SCRL_UP &trans &trans &trans &trans &trans               &trans &mmv MOVE_LEFT &mmv MOVE_DOWN &mmv MOVE_UP &mmv MOVE_RIGHT &trans &trans
+        &trans &trans &trans &trans &trans          &trans               &trans &trans                             &trans &trans         &trans         &trans          &trans &trans
+        &trans &trans &trans &trans &trans                 &trans &trans &trans &trans &trans &mkp RCLK                   &trans         &trans         &trans          &trans &trans
+      >;
     };
 
     extra2 { 
@@ -97,4 +107,16 @@
       status = "reserved";
     };
   };
+};
+
+// Mouse movement settings (adjust acceleration and speed)
+&mmv {
+    time-to-max-speed-ms = <120>;    // Time to reach max speed (default: 300)
+    acceleration-exponent = <1>;      // Smoothness of acceleration (0-2)
+};
+
+// Mouse scroll settings
+&msc {
+    time-to-max-speed-ms = <100>;     // Time to reach max scroll speed
+    acceleration-exponent = <0>;       // Scroll acceleration (0 = constant speed)
 };
